@@ -1,0 +1,123 @@
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <input type="range" id="baseSize" min="10" max="40">
+  <p id="baseSizeLabel">16pt</p>
+  <a href="#" class="button" id="rangeUp">/\</a>
+  <a href="#" class="button" id="rangeDown">\/</a>
+
+  <ul>
+    <li>
+      <span class="label body">Small<span class="size"></span></span>
+      <span class="sample small">Lorem ipsum dolor sit amet</span>
+    </li>
+    <li>
+      <span class="label body">Body<span class="size"></span></span>
+      <span class="sample body">Lorem ipsum dolor sit amet</span>
+    </li>
+    <li>
+      <span class="label body">H4<span class="size"></span></span>
+      <span class="sample h4">Lorem ipsum dolor sit amet</span>
+    </li>
+    <li>
+      <span class="label body">H3<span class="size"></span></span>
+      <span class="sample h3">Lorem ipsum dolor sit amet</span>
+    </li>
+    <li>
+      <span class="label body">H2<span class="size"></span></span>
+      <span class="sample h2">Lorem ipsum dolor sit amet</span>
+    </li>
+    <li>
+      <span class="label body">H1<span class="size"></span></span>
+      <span class="sample h1">Lorem ipsum dolor sit amet</span>
+    </li>
+    <li>
+      <span class="label body">Big<span class="size"></span></span>
+      <span class="sample big">Lorem ipsum dolor sit amet</span>
+    </li>
+    <li>
+      <span class="label body">Bigger<span class="size"></span></span>
+      <span class="sample bigger">Lorem ipsum dolor sit amet</span>
+    </li>
+    <li>
+      <span class="label body">Biggest<span class="size"></span></span>
+      <span class="sample biggest">Lorem ipsum dolor sit amet</span>
+    </li>
+  </ul>
+
+  <script type="text/javascript">
+
+    var samples = document.querySelectorAll('.sample')
+    var labels = document.querySelectorAll('.label')
+    var body = document.querySelector('body, html')
+    var initialSize = getComputedStyle(body).getPropertyValue('font-size')
+    var sizes = document.querySelectorAll('.size')
+    var buttons = document.querySelectorAll('.button')
+    var slider = document.querySelector('#baseSize')
+
+    function initialize() {
+
+      slider.setAttribute("value", parseInt(initialSize))
+
+      document.querySelector('#baseSizeLabel').innerHTML = initialSize
+
+      slider.addEventListener('change', changeSizes)
+
+      getSizes()
+    }
+
+    var getSizes = function() {
+
+      for(var i = 0; i < samples.length; i++) {
+
+        var fontSize = parseFloat(getComputedStyle(samples[i]).getPropertyValue('font-size'), 10)
+        fontSize = Math.round(fontSize)
+
+        var leading = parseFloat(getComputedStyle(samples[i]).getPropertyValue('line-height'), 10)
+
+        leading = Math.round(leading)
+
+        sizes[i].innerHTML = fontSize + "/" + leading
+      }
+    }
+
+    var changeSizes = function() {
+      var newSize = slider.value
+
+      body.style.fontSize = newSize + "px"
+
+      document.querySelector('#baseSizeLabel').innerHTML = newSize + "px"
+
+      getSizes()
+    }
+
+    for(var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", function(e) {
+        e.preventDefault()
+        var buttonID = this.getAttribute("id")
+
+        if(buttonID == "rangeUp") {
+          slider.value ++
+
+          changeSizes()
+        }
+
+        else if(buttonID == "rangeDown") {
+          slider.value --
+
+          changeSizes()
+        }
+      })
+    }
+
+    initialize()
+
+  </script>
+
+
+</body>
+</html>

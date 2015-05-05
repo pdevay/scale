@@ -1,0 +1,45 @@
+body {
+  font-size: 16px;
+  line-height: 1.4em;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.small    { font-size: .667rem; line-height: 1.4em; }
+.body     { font-size: 1rem; line-height: 1.4em; }
+.h4       { font-size: 1rem; line-height: 1.4em; font-style: italic; }
+.h3       { font-size: 1.5rem; line-height: 1.2em; font-weight: bold; }
+.h2       { font-size: 2.25rem; line-height: 1.2em; font-weight: bold; }
+.h1       { font-size: 3.375rem; line-height: 1.2em; font-weight: bold; }
+.big      { font-size: 5.063rem; line-height: 1.1em; font-weight: bold; }
+.bigger   { font-size: 7.594rem; line-height: 1.1em; font-weight: bold; }
+.biggest  { font-size: 11.391rem; line-height: 1.1em; font-weight: bold; }
+
+.label {
+  width: 6rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  padding-right: 2rem;
+  font-weight: bold;
+}
+
+.size {
+  font-weight: normal;
+  color: #c00;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  overflow: hidden;
+  display: flex;
+  height: auto;
+  white-space: nowrap;
+  align-items: center;
+  margin: 1rem auto;
+}
